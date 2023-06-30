@@ -1,37 +1,83 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { BiHomeHeart, BiUser, BiStar, BiCode, BiUserPin } from 'react-icons/bi';
 
-const navOptions = <>
-    <li><Link to='/'>Home</Link></li>
-    <li><Link to='/menu'>About</Link></li>
-    <li><Link to=''>Skills</Link></li>
-    <li><Link to=''>Projects</Link></li>
-    <li><Link to=''>Contact</Link></li>
-</>
 const NavBar = () => {
+    const [activeLink, setActiveLink] = useState('home');
+    
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const homeSection = document.getElementById('welcome');
+            const aboutSection = document.getElementById('about');
+            const skillsSection = document.getElementById('skills');
+            const projectsSection = document.getElementById('projects');
+            const contactSection = document.getElementById('contact');
+
+            const scrollPosition = window.scrollY;
+
+            if (
+                scrollPosition >= homeSection.offsetTop &&
+                scrollPosition < aboutSection.offsetTop
+            ) {
+                setActiveLink('home');
+            } else if (
+                scrollPosition >= aboutSection.offsetTop &&
+                scrollPosition < skillsSection.offsetTop
+            ) {
+                setActiveLink('about');
+            } else if (
+                scrollPosition >= skillsSection.offsetTop &&
+                scrollPosition < projectsSection.offsetTop
+            ) {
+                setActiveLink('skills');
+            } else if (
+                scrollPosition >= projectsSection.offsetTop &&
+                scrollPosition < contactSection.offsetTop
+            ) {
+                setActiveLink('projects');
+            } else if (scrollPosition >= contactSection.offsetTop) {
+                setActiveLink('contact');
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     return (
-        <>
-            <div className="navbar fixed z-10 bg-opacity-30 max-w-full bg-black text-white">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                        </label>
-                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            {navOptions}
-                        </ul>
-                    </div>
-                    <a className="btn btn-ghost text-xl uppercase">Nazir</a>
-                </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        {navOptions}
-                    </ul>
-                </div>
-                <div className="navbar-end">
-                    <a className="btn">Get started</a>
-                </div>
-            </div>
-        </>
+        <div className='fixed z-10 bottom-0  lg:block lg:w-auto w-full mx-auto lg:mx-0  flex text-3xl bg-neutral lg:h-full bg-opacity-50 p-3 font-bold text-white space-x-10 lg:space-x-0 lg:space-y-16'>
+            <a
+                className={`block ${activeLink === 'home' ? 'bg-red-400 p-1 rounded-lg' : ''}`}
+                href="#welcome"
+            >
+                <BiHomeHeart className='text-3xl' />
+            </a>
+            <a
+                className={`block ${activeLink === 'about' ? 'bg-red-400 p-1 rounded-lg' : ''}`}
+                href="#about"
+            >
+                <BiUser className='text-3xl' />
+            </a>
+            <a
+                className={`block ${activeLink === 'skills' ? 'bg-red-400 p-1 rounded-lg' : ''}`}
+                href="#skills"
+            >
+                <BiStar className='text-3xl' />
+            </a>
+            <a
+                className={`block ${activeLink === 'projects' ? 'bg-red-400 p-1 rounded-lg' : ''}`}
+                href="#projects"
+            >
+                <BiCode className='text-3xl' />
+            </a>
+            <a
+                className={`block ${activeLink === 'contact' ? 'bg-red-400 p-1 rounded-lg' : ''}`}
+                href="#contact"
+            >
+                <BiUserPin className='text-3xl' />
+            </a>
+        </div>
     );
 };
 

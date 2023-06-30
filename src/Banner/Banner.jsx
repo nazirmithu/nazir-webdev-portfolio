@@ -1,5 +1,6 @@
 import { Typewriter } from 'react-simple-typewriter';
 import animationData from '../../public/data.json'
+import { FaFileDownload } from "react-icons/fa";
 import Lottie from "lottie-react";
 
 const Banner = () => {
@@ -25,12 +26,11 @@ const Banner = () => {
                                 typeSpeed={70}
                                 deleteSpeed={50}
                                 delaySpeed={1000}
-
                             />
                         </span>
                     </h1>
                     <p className="py-6">I have technical skills, exceptional teamwork abilities, a profound passion for continuous learning, meticulous attention to detail, and an unwavering dedication to my work.</p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <a className="btn btn-error text-white" href="https://drive.google.com/uc?export=download&id=1bZGLN6416wY78_bI2gch4ea2UM6YN-Qt"><FaFileDownload />Download Resume</a>
                 </div>
             </div>
         </div>
