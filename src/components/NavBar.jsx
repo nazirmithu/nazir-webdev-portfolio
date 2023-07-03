@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BiHomeHeart, BiUser, BiStar, BiCode, BiUserPin } from 'react-icons/bi';
+import { BiHomeCircle, BiUser, BiStar, BiCodeAlt, BiUserPin } from 'react-icons/bi';
 
 const NavBar = () => {
     const [activeLink, setActiveLink] = useState('home');
@@ -51,7 +51,7 @@ const NavBar = () => {
                 className={`block ${activeLink === 'home' ? 'bg-red-400 p-1 rounded-lg' : ''}`}
                 href="#welcome"
             >
-                <BiHomeHeart className='text-3xl' />
+                <BiHomeCircle className='text-3xl' />
             </a>
             <a
                 className={`block ${activeLink === 'about' ? 'bg-red-400 p-1 rounded-lg' : ''}`}
@@ -69,7 +69,7 @@ const NavBar = () => {
                 className={`block ${activeLink === 'projects' ? 'bg-red-400 p-1 rounded-lg' : ''}`}
                 href="#projects"
             >
-                <BiCode className='text-3xl' />
+                <BiCodeAlt className='text-3xl' />
             </a>
             <a
                 className={`block ${activeLink === 'contact' ? 'bg-red-400 p-1 rounded-lg' : ''}`}

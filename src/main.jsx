@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { RouterProvider } from 'react-router-dom'
-import router from './routes/Routes'
+import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-   <RouterProvider router={router}></RouterProvider>
+   <div className='bg-sky-950 text-white'>
+   <App></App>
+   </div>
   </React.StrictMode>,
 )
